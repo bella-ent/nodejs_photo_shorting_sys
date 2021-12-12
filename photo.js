@@ -2,11 +2,15 @@ const fs = require("fs").promises;
 const readdir = fs.readdir;
 const path = require('path');
 //1. accept argument on the terminal
-const arg = process.argv.slice(2)[0];
+const arg =
+	process.argv.slice(2)[0] ||
+	console.error(
+		"Please input a folder name which contains photos you want to sort."
+	);
 
 //2. Make 3 folders (video, captured, duplicated)
 const folders = ["video", "captured", "duplicated"];
-folders.forEach(folder => fs.mkdir(`./test/${folder}`))
+folders.forEach((folder) => fs.mkdir(`./${arg}/${folder}`));
 
 const sortFiles = async () => {
 	try {

@@ -24,6 +24,7 @@ const sortFiles = async () => {
 				const newPath = `./${arg}/${newFolderName}/${file}`;
 				await fs.copyFile(oldPath, newPath);
 				await fs.rm(oldPath);
+				console.log(`${file} moved to a '${newFolderName}' folder`);
 			};
 			if (path.extname(file) === ".mp4" || path.extname(file) === ".mov")
 				moveFile(folders[0]);
